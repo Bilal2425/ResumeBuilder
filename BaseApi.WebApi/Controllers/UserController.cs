@@ -22,14 +22,15 @@ namespace BaseApi.WebApi.Controllers
         private readonly AuthService _authService;
         private readonly ApplicationDbContext _applicationDbContext;
         private readonly EmailService _emailService;
-        
+        private readonly IConfiguration _configuration;
 
-        public UserController(UserDbContext context, AuthService authService, ApplicationDbContext applicationDbContext, EmailService emailService)
+        public UserController(UserDbContext context, AuthService authService, ApplicationDbContext applicationDbContext, EmailService emailService, IConfiguration configuration)
         {
             _context = context;
             _authService = authService;
             _applicationDbContext = applicationDbContext;
             _emailService = emailService;
+            _configuration = configuration;
         }
 
         
