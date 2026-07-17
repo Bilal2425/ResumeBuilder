@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="..\\.editorconfig" Link=".editorconfig" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="DinkToPdf" Version="1.0.8" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+      <PackageReference Include="Mscc.GenerativeAI" Version="1.9.2" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="PuppeteerSharp" Version="20.0.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BaseApi.Data\BaseApi.Data.csproj" />
+      <ProjectReference Include="..\BaseApi.Model\BaseApi.Model.csproj" />
+      <ProjectReference Include="..\BaseApi.Service\BaseApi.Service.csproj" />
+    </ItemGroup>
+
+</Project>

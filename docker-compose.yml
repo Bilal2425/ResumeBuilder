@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: resumecraft-mongodb
+    restart: always
+    environment:
+      - MONGO_INITDB_DATABASE=resumeBuilderDb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: resumecraft-postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=UserDB
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Bilalapril24$
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  api:
+    image: ghcr.io/${GITHUB_USERNAME}/resumecraft-api:latest
+    container_name: resumecraft-api
+    restart: always
+    depends_on:
+      - mongodb
+      - postgres
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__PostgreSqlConnection=Host=postgres;Database=UserDB;Username=postgres;Password=Bilalapril24$
+      - MongoDbSettings__ConnectionString=mongodb://mongodb:27017/
+      - OllamaSettings__Endpoint=http://host.docker.internal:11434/api/generate
+    ports:
+      - "5000:5000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  nginx:
+    image: ghcr.io/${GITHUB_USERNAME}/resumecraft-frontend:latest
+    container_name: resumecraft-nginx
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  mongo_data:
+  pg_data:
