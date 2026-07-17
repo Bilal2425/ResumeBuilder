@@ -46,6 +46,16 @@ namespace BaseApi.WebApi.Controllers
                     return BadRequest(ModelState);
                 }
 
+                // Check invite code if configured in settings
+                var expectedInviteCode = _configuration["RegistrationSettings:InviteCode"];
+                if (!string.IsNullOrEmpty(expectedInviteCode))
+                {
+                    if (string.IsNullOrEmpty(registerDto.InviteCode) || registerDto.InviteCode != expectedInviteCode)
+                    {
+                        return BadRequest(new { message = "Invalid registration invite code." });
+                    }
+                }
+
                 var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.EmailId == registerDto.Email);
                 if(existingUser != null)
                 {

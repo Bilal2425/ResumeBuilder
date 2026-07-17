@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,5 +20,7 @@ namespace BaseApi.Model.DTOs
         [Required]
         [MinLength(6)]
         public string? Password { get; set; }
+
+        public string? InviteCode { get; set; }
     }
 }

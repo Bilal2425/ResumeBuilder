@@ -47,6 +47,7 @@ services:
       - ConnectionStrings__PostgreSqlConnection=Host=postgres;Database=UserDB;Username=postgres;Password=Bilalapril24$$
       - MongoDbSettings__ConnectionString=mongodb://mongodb:27017/
       - OllamaSettings__Endpoint=http://host.docker.internal:11434/api/generate
+      - RegistrationSettings__InviteCode=${REGISTRATION_INVITE_CODE}
     ports:
       - "5000:5000"
     extra_hosts:
