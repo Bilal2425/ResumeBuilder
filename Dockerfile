@@ -7,8 +7,6 @@ COPY ["BaseApi.Business/BaseApi.Business.csproj", "BaseApi.Business/"]
 COPY ["BaseApi.Data/BaseApi.Data.csproj", "BaseApi.Data/"]
 COPY ["BaseApi.Model/BaseApi.Model.csproj", "BaseApi.Model/"]
 COPY ["BaseApi.Service/BaseApi.Service.csproj", "BaseApi.Service/"]
-COPY ["BaseApi.ServiceInterface/BaseApi.ServiceInterface.csproj", "BaseApi.ServiceInterface/"]
-COPY ["BaseApi.Shared/BaseApi.Shared.csproj", "BaseApi.Shared/"]
 COPY ["BaseApi.sln", "./"]
 
 RUN dotnet restore BaseApi.sln
