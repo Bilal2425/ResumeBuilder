@@ -54,7 +54,7 @@ builder.Services.AddSingleton<BaseApi.Business.ResumeParserService>();
 
 // Register UserDbContext
 var postgreSqlConnection = builder.Configuration.GetConnectionString("PostgreSqlConnection") 
-                           ?? "Host=localhost;Database=UserDB;Username=postgres;Password=Bilalapril24$";
+                           ?? "Host=localhost;Database=UserDB;Username=postgres;Password=postgres";
 
 builder.Services.AddDbContext<UserDbContext>(options =>
     options.UseNpgsql(postgreSqlConnection,

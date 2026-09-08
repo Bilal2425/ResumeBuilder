@@ -8,3 +8,10 @@ client-dist/
 .vs/
 *.user
 *.suo
+
+# Environment variables & secrets
+.env
+*.env
+!.env.example
+appsettings.*.local.json
+appsettings.Local.json

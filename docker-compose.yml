@@ -24,7 +24,7 @@ services:
     environment:
       - POSTGRES_DB=UserDB
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Bilalapril24$$
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
     ports:
       - "5432:5432"
     volumes:
@@ -44,10 +44,11 @@ services:
       - postgres
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ConnectionStrings__PostgreSqlConnection=Host=postgres;Database=UserDB;Username=postgres;Password=Bilalapril24$$
+      - ConnectionStrings__PostgreSqlConnection=Host=postgres;Database=UserDB;Username=postgres;Password=${POSTGRES_PASSWORD:-postgres}
       - MongoDbSettings__ConnectionString=mongodb://mongodb:27017/
       - OllamaSettings__Endpoint=http://host.docker.internal:11434/api/generate
       - RegistrationSettings__InviteCode=${REGISTRATION_INVITE_CODE}
+      - JwtSettings__SecretKey=${JWT_SECRET:-YOUR_SUPER_SECRET_JWT_KEY_MUST_BE_AT_LEAST_32_CHARS}
     ports:
       - "5000:5000"
     extra_hosts:
